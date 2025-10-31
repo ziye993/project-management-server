@@ -1,0 +1,195 @@
+import initConfig from './initConfig.js';
+import app from './app.js';
+import { spawn, exec } from 'child_process';
+import { getConfig, setConfig } from './utils/jsonFile.js'
+import pkg from 'node-file-dialog';
+
+const projectList = initConfig();
+
+let currentChild = {}; // 保存当前子进程
+
+let logs = {
+
+}
+const cleanup = () => {
+  if (!currentChild) {
+    return
+  }
+  console.log(currentChild)
+  console.log("\n🧹 服务即将退出，清理子进程...");
+  let lengtht = Object.keys(currentChild)?.filter(_ => !!currentChild[ _ ])?.length;
+  let successCount = 0;
+  Object.keys(currentChild)?.map(_ => {
+    console.log(_)
+    try {
+      currentChild[ _ ].kill("SIGTERM");
+      successCount += 1;
+    } catch (error) {
+      console.log(error)
+    }
+
+  })
+  currentChild = undefined;
+  console.log(`\n🧹清理完成; 总计${lengtht} ; 成功${successCount}`);
+  process.exit();
+};
+
+// 捕获退出事件
+process.on("SIGINT", cleanup);   // Ctrl+C
+process.on("SIGTERM", cleanup);  // kill 命令
+process.on("exit", cleanup);
+process.on("uncaughtException", err => {
+  console.error("未捕获异常:", err);
+  cleanup();
+});
+
+app.post('/project/getProjectList', (req, res) => {
+  // const body = req.body;
+  // console.log('收到数据：', body);
+  res.json({
+    msg: '', data: projectList, success: true, code: 0
+  });
+});
+
+app.post('/project/getLogs', (req, res) => {
+  res.send({ success: true, data: logs, code: 0, msg: '' })
+})
+
+app.post('/project/forceRefreshList', (req, res) => {
+  res.json({
+    msg: '', data: initConfig(true), success: true, code: 0
+  });
+});
+
+app.post('/project/runCommand', (req, res) => {
+  const { path, command, value, project } = req.body;
+  if (!command || !path) return res.status(400).send('缺少参数');
+  let child = null
+  if (!currentChild[ `${project}:${value}` ]) {
+    const isWin = process.platform === 'win32';
+    const cmd = isWin ? 'cmd' : 'sh';
+    const args = isWin ? [ '/c', `cd ${path} & npm run ${value}` ] : [ '-c', `cd ${path} && npm run ${value}` ];
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    child = spawn(cmd, args);
+    currentChild[ `${project}:${value}` ] = child;
+  } else {
+    child = currentChild[ `${project}:${value}` ];
+    child.stdout.removeAllListeners('data');
+    child.stderr.removeAllListeners('data');
+  }
+  if (!logs[ project ]) logs[ project ] = {};
+  if (!logs[ project ][ value ]) logs[ project ][ value ] = { logs: [] };
+  console.log(`${project}:${value}: connect`)
+  child.stdout.on('data', data => {
+    const buf = Buffer.from(data);
+    const str = buf.toString(); // 默认 utf8
+    logs[ project ][ value ].logs.push({ text: str });
+    if (logs[ project ][ value ].logs.length > 100) {
+      logs[ project ][ value ].logs.shift(); // 保留最近 1000 行
+    }
+    res.write(data);
+  });
+
+  // 错误输出
+  child.stderr.on("data", data => {
+    const buf = Buffer.from(data);
+    const str = buf.toString(); // 默认 utf8
+    logs[ project ][ value ].logs.push({ text: str, type: 'error' });
+    if (logs[ project ][ value ].logs.length > 100) {
+      logs[ project ][ value ].logs.shift(); // 保留最近 1000 行
+    }
+    res.write(`[[E]][错误] ${data}`);
+    console.log(`${project}:${value}: error`)
+  });
+
+  // 进程出错（启动失败）
+  child.on("error", err => {
+    logs[ project ][ value ].logs.push({ text: err.message, type: 'error' });
+    if (logs[ project ][ value ].logs.length > 100) {
+      logs[ project ][ value ].logs.shift(); // 保留最近 1000 行
+    }
+    res.write(`[[E]][进程启动失败] ${err.message}`);
+    res.end();
+    currentChild[ `${project}:${value}` ] = null;
+    console.log(`${project}:${value}: 进程启动失败`)
+  });
+
+  // 进程退出
+  child.on("close", code => {
+    if (code === 0) {
+      res.end(`\n✅ 进程正常退出（退出码 ${code}）`);
+    } else {
+      res.end(`\n❌ 进程异常退出（退出码 ${code}）`);
+    }
+    currentChild[ `${project}:${value}` ] = null;
+    console.log(`${project}:${value}: exit ${code}`)
+  });
+
+  // req.on('close', () => {
+  //   if (!res.writableEnded) res.end();
+  //   console.log(`${project}:${value}: web close`)
+  // });
+});
+
+app.post('/project/stopCommand', (req, res) => {
+  const { path, command, value, project } = req.body;
+  if (currentChild?.[ `${project}:${value}` ]) {
+    currentChild[ `${project}:${value}` ].kill('SIGTERM'); // 温和停止
+    currentChild[ `${project}:${value}` ] = null;
+    delete currentChild[ `${project}:${value}` ];
+    res.send({ msg: '已停止进程', code: 0, success: true, data: null });
+  } else {
+    res.send({ msg: '此项目可能未运行或出错', code: 0, success: true, data: `${project}:${value}` });
+  }
+});
+
+app.post('/project/getRunningList', (req, res) => {
+  const result = {};
+  Object.keys(currentChild).map(_ => {
+    let names = _.split(":");
+    if (!result[ names[ 0 ] ]) {
+      result[ names[ 0 ] ] = [];
+    }
+    result[ names[ 0 ] ].push(names[ 1 ]);
+  });
+  res.send({ success: true, data: result, code: 0, msg: '' })
+})
+
+app.post('/project/addProjectFolder', async (req, res) => {
+  let config = getConfig();
+  if (!config) {
+    config = {}
+  }
+  if (!config.projectPaths) {
+    config.projectPaths = [];
+  }
+  if (!config.projectList) {
+    config.projectList = [];
+  }
+  const _path = await pkg({ type: "directory" });
+  if (_path) {
+    config.projectPaths.push(..._path);
+    setConfig(config);
+    res.send({ success: true, data: _path, code: 0, msg: '' });
+  } else {
+    res.status(500).send({ success: false, data: null, code: 1, msg: '执行错误' });
+  }
+})
+
+app.post('/project/openInVscode', (req, res) => {
+  const { path } = req.body;
+  const isWin = process.platform === 'win32';
+  const cmd = isWin ? 'cmd' : 'sh';
+  const args = isWin ? [ '/c', `code ${path}` ] : [ '-c', `code ${path}` ];
+  try {
+    spawn(cmd, args);
+    res.send({
+      success: true, msg: '', data: null, code: 0
+    })
+  } catch (error) {
+    res.status(500).send({
+      success: false, msg: '', error, data: null, code: 0
+    })
+  }
+})
+

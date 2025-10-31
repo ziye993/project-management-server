@@ -1,0 +1,1373 @@
+{
+  "projectPaths": [
+    "E:/Desktop/qs-code"
+  ],
+  "projectList": [
+    {
+      "path": "E:/Desktop/qs-code\\dmom-base-batch",
+      "label": "dmom-base-batch",
+      "value": "dmom-base-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build:pord",
+          "value": "build:pord",
+          "command": "cross-env UMI_ENV=pord max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "build:prec",
+          "value": "build:prec",
+          "command": "cross-env UMI_ENV=prec max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\dmom-eam-batch",
+      "label": "dmom-eam-batch",
+      "value": "dmom-eam-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build:dayuan",
+          "value": "build:dayuan",
+          "command": "cross-env UMI_ENV=dayuan max build"
+        },
+        {
+          "label": "build:liuhe",
+          "value": "build:liuhe",
+          "command": "cross-env UMI_ENV=liuhe max build"
+        },
+        {
+          "label": "build:pord",
+          "value": "build:pord",
+          "command": "cross-env UMI_ENV=pord max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "build:prec",
+          "value": "build:prec",
+          "command": "cross-env UMI_ENV=prec max build"
+        },
+        {
+          "label": "build:qingshan",
+          "value": "build:qingshan",
+          "command": "cross-env UMI_ENV=qingshan max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\dmom-ems-batch",
+      "label": "dmom-ems-batch",
+      "value": "dmom-ems-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "biome:lint",
+          "value": "biome:lint",
+          "command": "npx @biomejs/biome lint"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run biome:lint && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky"
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\dmom-frontend",
+      "label": "dmom-frontend",
+      "value": "dmom-frontend",
+      "scripts": [
+        {
+          "label": "pre",
+          "value": "pre",
+          "command": "cnpm install || yarn --registry https://registry.npm.taobao.org || npm install --registry https://registry.npm.taobao.org "
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "vue-cli-service serve"
+        },
+        {
+          "label": "build:test",
+          "value": "build:test",
+          "command": "vue-cli-service build --mode test"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "vue-cli-service build --mode pre"
+        },
+        {
+          "label": "build:prod",
+          "value": "build:prod",
+          "command": "vue-cli-service build --mode production"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "vue-cli-service lint"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\dmom-frontend-biaozhun",
+      "label": "dmom-frontend-biaozhun",
+      "value": "dmom-frontend-biaozhun",
+      "scripts": [
+        {
+          "label": "pre",
+          "value": "pre",
+          "command": "cnpm install || yarn --registry https://registry.npm.taobao.org || npm install --registry https://registry.npm.taobao.org "
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "vue-cli-service serve"
+        },
+        {
+          "label": "build:test",
+          "value": "build:test",
+          "command": "vue-cli-service build --mode test"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "vue-cli-service build --mode pre"
+        },
+        {
+          "label": "build:prod",
+          "value": "build:prod",
+          "command": "vue-cli-service build --mode production"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "vue-cli-service lint"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\nodePorxy",
+      "label": "nodePorxy",
+      "value": "nodePorxy",
+      "scripts": []
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-agv-batch",
+      "label": "qingshan-dmom-agv-batch",
+      "value": "qingshan-dmom-agv-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-mes-batch",
+      "label": "qingshan-dmom-mes-batch",
+      "value": "qingshan-dmom-mes-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "dualbuild",
+          "value": "dualbuild",
+          "command": "cross-env UMI_ENV=prod max dualbuild"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        },
+        {
+          "label": "start:nohit",
+          "value": "start:nohit",
+          "command": "cross-env MAX_HMR=false max dev"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-nfc-drive",
+      "label": "qingshan-dmom-nfc-drive",
+      "value": "qingshan-dmom-nfc-drive",
+      "scripts": [
+        {
+          "label": "start",
+          "value": "start",
+          "command": "node main.js"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "echo \"Error: no test specified\" && exit 1"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "webpack --config webpack.config.js"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-purchase-batch",
+      "label": "qingshan-dmom-purchase-batch",
+      "value": "qingshan-dmom-purchase-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-qms-batch",
+      "label": "qingshan-dmom-qms-batch",
+      "value": "qingshan-dmom-qms-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-dmom-wms-batch",
+      "label": "qingshan-dmom-wms-batch",
+      "value": "qingshan-dmom-wms-batch",
+      "scripts": [
+        {
+          "label": "analyze",
+          "value": "analyze",
+          "command": "cross-env ANALYZE=1 max build"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "cross-env UMI_ENV=prod max build"
+        },
+        {
+          "label": "build:pre",
+          "value": "build:pre",
+          "command": "cross-env UMI_ENV=pre max build"
+        },
+        {
+          "label": "deploy",
+          "value": "deploy",
+          "command": "npm run build && npm run gh-pages"
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "npm run start:dev"
+        },
+        {
+          "label": "gh-pages",
+          "value": "gh-pages",
+          "command": "gh-pages -d dist"
+        },
+        {
+          "label": "i18n-remove",
+          "value": "i18n-remove",
+          "command": "pro i18n-remove --locale=zh-CN --write"
+        },
+        {
+          "label": "postinstall",
+          "value": "postinstall",
+          "command": "max setup"
+        },
+        {
+          "label": "jest",
+          "value": "jest",
+          "command": "jest"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "npm run lint:js && npm run lint:prettier && npm run tsc"
+        },
+        {
+          "label": "lint-staged",
+          "value": "lint-staged",
+          "command": "lint-staged"
+        },
+        {
+          "label": "lint-staged:js",
+          "value": "lint-staged:js",
+          "command": "eslint --ext .js,.jsx,.ts,.tsx "
+        },
+        {
+          "label": "lint:fix",
+          "value": "lint:fix",
+          "command": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src "
+        },
+        {
+          "label": "lint:js",
+          "value": "lint:js",
+          "command": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+        },
+        {
+          "label": "lint:prettier",
+          "value": "lint:prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+        },
+        {
+          "label": "openapi",
+          "value": "openapi",
+          "command": "max openapi"
+        },
+        {
+          "label": "prepare",
+          "value": "prepare",
+          "command": "husky install"
+        },
+        {
+          "label": "prettier",
+          "value": "prettier",
+          "command": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\""
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "npm run build && max preview --port 8000"
+        },
+        {
+          "label": "record",
+          "value": "record",
+          "command": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login"
+        },
+        {
+          "label": "serve",
+          "value": "serve",
+          "command": "umi-serve"
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "cross-env UMI_ENV=local max dev"
+        },
+        {
+          "label": "start:dev",
+          "value": "start:dev",
+          "command": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:no-mock",
+          "value": "start:no-mock",
+          "command": "cross-env MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:pre",
+          "value": "start:pre",
+          "command": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev"
+        },
+        {
+          "label": "start:test",
+          "value": "start:test",
+          "command": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev"
+        },
+        {
+          "label": "test",
+          "value": "test",
+          "command": "jest"
+        },
+        {
+          "label": "test:coverage",
+          "value": "test:coverage",
+          "command": "npm run jest -- --coverage"
+        },
+        {
+          "label": "test:update",
+          "value": "test:update",
+          "command": "npm run jest -- -u"
+        },
+        {
+          "label": "tsc",
+          "value": "tsc",
+          "command": "tsc --noEmit"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\qingshan-prod-line-large-view",
+      "label": "qingshan-prod-line-large-view",
+      "value": "qingshan-prod-line-large-view",
+      "scripts": [
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "vite"
+        },
+        {
+          "label": "build",
+          "value": "build",
+          "command": "tsc -b && vite build"
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "eslint ."
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "vite preview"
+        }
+      ]
+    },
+    {
+      "path": "E:/Desktop/qs-code\\reporting",
+      "label": "reporting",
+      "value": "reporting",
+      "scripts": []
+    }
+  ]
+}
