@@ -2,8 +2,6 @@
 
 # dependencies
 **/node_modules
-# roadhog-api-doc ignore
-/src/utils/request-temp.js
 _roadhog-api-doc
 
 # production
@@ -21,18 +19,12 @@ yarn.lock
 package-lock.json
 *bak
 .vscode
-
+/node_modules*
 
 # visual studio code
 .history
-*.log
 functions/*
 .temp/**
-
-# umi
-.umi
-.umi-production
-.umi-test
 
 # screenshot
 screenshot
