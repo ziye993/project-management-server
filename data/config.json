@@ -2,6 +2,7 @@
   "projectPaths": [
     "E:/Desktop/qs-code"
   ],
+  "soltScript":["start","dev","build","server"],
   "projectList": [
     {
       "path": "E:/Desktop/qs-code\\dmom-base-batch",

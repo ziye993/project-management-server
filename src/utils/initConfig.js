@@ -1,5 +1,5 @@
 
-import { fileExists, getConfig, getFolders, readJSON, setConfig, writeJSON } from './utils/jsonFile.js'
+import { fileExists, getConfig, getFolders, readJSON, setConfig, writeJSON } from './jsonFile.js'
 
 export default function initConfig(forceRefresh) {
   const config = getConfig();
@@ -20,15 +20,21 @@ export default function initConfig(forceRefresh) {
             return {
               label: item,
               value: item,
-              command: scripts[ item ]
+              command: scripts[item],
+
             }
-          })
+          })?.map(_ => {
+            const fIndex = (config?.soltScript || [])?.findIndex(_.value);
+            if (fIndex > -1) {
+              return {
+                ..._, sortIndex: fIndex || config?.soltScript?.length + 100,
+              }
+            }
+          }).sort((_, __) => _.sortIndex > __.sortIndex);
         } else {
           scripts = []
         }
-
       }
-
       data.push({ path: _path, label: __, value: __, scripts: scripts || [] })
     })
 
