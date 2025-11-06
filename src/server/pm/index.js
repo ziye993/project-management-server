@@ -117,8 +117,10 @@ app.post('/project/runCommand', (req, res) => {
   // 进程退出
   child.on("close", code => {
     if (code === 0) {
+      console.log(`\n✅ 进程:${project}:${value} ; 正常退出（退出码 ${code}）`)
       res.end(`\n✅ 进程正常退出（退出码 ${code}）`);
     } else {
+      console.log(`\n❌ 进程:${project}:${value} ; 异常退出（退出码 ${code}）`)
       res.end(`\n❌ 进程异常退出（退出码 ${code}）`);
     }
     currentChild[`${project}:${value}`] = null;
@@ -134,9 +136,9 @@ app.post('/project/runCommand', (req, res) => {
 app.post('/project/stopCommand', (req, res) => {
   const { path, command, value, project } = req.body;
   if (currentChild?.[`${project}:${value}`]) {
-    currentChild[`${project}:${value}`].kill('SIGTERM'); // 温和停止
-    currentChild[`${project}:${value}`] = null;
-    delete currentChild[`${project}:${value}`];
+    currentChild[`${project}:${value}`].kill('SIGINT'); // 温和停止
+    // currentChild[`${project}:${value}`] = null;
+    // delete currentChild[`${project}:${value}`];
     res.send({ msg: '已停止进程', code: 0, success: true, data: null });
   } else {
     res.send({ msg: '此项目可能未运行或出错', code: 0, success: true, data: `${project}:${value}` });

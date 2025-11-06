@@ -1,4 +1,3 @@
-import 'module-alias/register.js';
 import path from "path";
 import express from 'express'
 import app from'./src/app.js';

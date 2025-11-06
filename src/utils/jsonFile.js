@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// import config from '../data/config.json' assert { type: 'json' };
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -11,6 +11,7 @@ const configPath = '../../../data/config.json';
 export function readJSON(fileName) {
   const filePath = path.resolve(__dirname, fileName);
   const data = fs.readFileSync(filePath, 'utf-8');
+  
   return JSON.parse(data);
 }
 
@@ -38,7 +39,7 @@ export function setConfig(newConfig) {
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
   const oldConfig = getConfig();
   const merged = { ...oldConfig, ...newConfig };
-  writeJSON(configPath, merged);
+  writeJSON(configPath,merged);
 }
 
 

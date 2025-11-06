@@ -17,9 +17,9 @@ const openUrl = (port) => {
       process.exit(1);
   }
 
-  exec(cmd, (err) => {
-    if (err) console.error("打开浏览器失败:", err);
-    else console.log("url:", url);
-  });
+  // exec(cmd, (err) => {
+  //   if (err) console.error("打开浏览器失败:", err);
+  //   else console.log("url:", url);
+  // });
 }
 export default openUrl
