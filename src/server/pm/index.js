@@ -4,7 +4,7 @@ import { spawn, exec } from 'child_process';
 import { getConfig, setConfig } from '../../utils/jsonFile.js'
 import pkg from 'node-file-dialog';
 
-const projectList = initConfig();
+let projectList = initConfig();
 
 let currentChild = {}; // 保存当前子进程
 
@@ -15,12 +15,11 @@ const cleanup = () => {
   if (!currentChild) {
     return
   }
-  console.log(currentChild)
+
   console.log("\n🧹 服务即将退出，清理子进程...");
   let lengtht = Object.keys(currentChild)?.filter(_ => !!currentChild[_])?.length;
   let successCount = 0;
   Object.keys(currentChild)?.map(_ => {
-    console.log(_)
     try {
       currentChild[_].kill("SIGTERM");
       successCount += 1;
@@ -44,8 +43,7 @@ process.on("uncaughtException", err => {
 });
 
 app.post('/project/getProjectList', (req, res) => {
-  // const body = req.body;
-  // console.log('收到数据：', body);
+
   res.json({
     msg: '', data: projectList, success: true, code: 0
   });
@@ -56,8 +54,9 @@ app.post('/project/getLogs', (req, res) => {
 })
 
 app.post('/project/forceRefreshList', (req, res) => {
+  projectList = initConfig(true);
   res.json({
-    msg: '', data: initConfig(true), success: true, code: 0
+    msg: '', data: projectList, success: true, code: 0
   });
 });
 
@@ -124,7 +123,6 @@ app.post('/project/runCommand', (req, res) => {
       res.end(`\n❌ 进程异常退出（退出码 ${code}）`);
     }
     currentChild[`${project}:${value}`] = null;
-    console.log(`${project}:${value}: exit ${code}`)
   });
 
   // req.on('close', () => {

@@ -4,7 +4,7 @@ import { fileExists, getConfig, getFolders, readJSON, setConfig, writeJSON } fro
 export default function initConfig(forceRefresh) {
   const config = getConfig();
   if (!forceRefresh) {
-    
+
     return config.projectList || []
   }
   const data = []
@@ -18,12 +18,12 @@ export default function initConfig(forceRefresh) {
         scripts = scriptConfig?.scripts;
         if (scripts) {
           scripts = Object?.keys?.(scripts).map(item => {
-            const fIndex = (config?.soltScript || [])?.findIndex(_=>item===_);
+            const fIndex = (config?.soltScript || [])?.findIndex(_ => item === _);
             return {
               label: item,
               value: item,
               command: scripts[item],
-              sortIndex: fIndex || config?.soltScript?.length + 100
+              sortIndex: fIndex > -1 ? fIndex : config?.soltScript?.length + 100
             }
           })
         } else {
@@ -36,6 +36,5 @@ export default function initConfig(forceRefresh) {
   });
   config.projectList = data;
   setConfig(config);
-  console.log(config)
   return data
 }

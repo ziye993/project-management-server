@@ -1,0 +1,123 @@
+{
+  "projectPaths": [
+    "C:/Users/ziye9/Desktop/project"
+  ],
+  "soltScript": [
+    "start",
+    "dev",
+    "build",
+    "server"
+  ],
+  "projectList": [
+    {
+      "path": "C:/Users/ziye9/Desktop/project/chrome",
+      "label": "chrome",
+      "value": "chrome",
+      "scripts": []
+    },
+    {
+      "path": "C:/Users/ziye9/Desktop/project/data",
+      "label": "data",
+      "value": "data",
+      "scripts": []
+    },
+    {
+      "path": "C:/Users/ziye9/Desktop/project/nodeLocalhostChat",
+      "label": "nodeLocalhostChat",
+      "value": "nodeLocalhostChat",
+      "scripts": []
+    },
+    {
+      "path": "C:/Users/ziye9/Desktop/project/project-management-server",
+      "label": "project-management-server",
+      "value": "project-management-server",
+      "scripts": [
+        {
+          "label": "test",
+          "value": "test",
+          "command": "echo \"Error: no test specified\" && exit 1",
+          "sortIndex": 105
+        },
+        {
+          "label": "start",
+          "value": "start",
+          "command": "node main.js",
+          "sortIndex": 0
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/ziye9/Desktop/project/project-management-web",
+      "label": "project-management-web",
+      "value": "project-management-web",
+      "scripts": [
+        {
+          "label": "build",
+          "value": "build",
+          "command": "tsc -b && vite build",
+          "sortIndex": 2
+        },
+        {
+          "label": "lint",
+          "value": "lint",
+          "command": "eslint .",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview",
+          "value": "preview",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview1",
+          "value": "preview1",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview2",
+          "value": "preview2",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview3",
+          "value": "preview3",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview4",
+          "value": "preview4",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview5",
+          "value": "preview5",
+          "command": "vite preview",
+          "sortIndex": 4
+        },
+        {
+          "label": "preview6",
+          "value": "preview6",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "preview7",
+          "value": "preview7",
+          "command": "vite preview",
+          "sortIndex": 105
+        },
+        {
+          "label": "dev",
+          "value": "dev",
+          "command": "vite",
+          "sortIndex": 1
+        }
+      ]
+    }
+  ]
+}

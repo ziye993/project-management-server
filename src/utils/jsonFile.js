@@ -5,13 +5,13 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const configPath = '../../../data/config.json';
+const configPath = '../../data/config.json';
 
 // 读取 JSON 文件
 export function readJSON(fileName) {
   const filePath = path.resolve(__dirname, fileName);
   const data = fs.readFileSync(filePath, 'utf-8');
-  
+
   return JSON.parse(data);
 }
 
@@ -39,7 +39,7 @@ export function setConfig(newConfig) {
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
   const oldConfig = getConfig();
   const merged = { ...oldConfig, ...newConfig };
-  writeJSON(configPath,merged);
+  writeJSON(configPath, merged);
 }
 
 
