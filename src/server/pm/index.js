@@ -42,25 +42,25 @@ process.on("uncaughtException", err => {
   cleanup();
 });
 
-app.post('/project/getProjectList', (req, res) => {
+app.post('/api/project/getProjectList', (req, res) => {
 
   res.json({
     msg: '', data: projectList, success: true, code: 0
   });
 });
 
-app.post('/project/getLogs', (req, res) => {
+app.post('/api/project/getLogs', (req, res) => {
   res.send({ success: true, data: logs, code: 0, msg: '' })
 })
 
-app.post('/project/forceRefreshList', (req, res) => {
+app.post('/api/project/forceRefreshList', (req, res) => {
   projectList = initConfig(true);
   res.json({
     msg: '', data: projectList, success: true, code: 0
   });
 });
 
-app.post('/project/runCommand', (req, res) => {
+app.post('/api/project/runCommand', (req, res) => {
   const { path, command, value, project } = req.body;
   if (!command || !path) return res.status(400).send('缺少参数');
   let child = null
@@ -131,7 +131,7 @@ app.post('/project/runCommand', (req, res) => {
   // });
 });
 
-app.post('/project/stopCommand', (req, res) => {
+app.post('/api/project/stopCommand', (req, res) => {
   const { path, command, value, project } = req.body;
   if (currentChild?.[`${project}:${value}`]) {
     currentChild[`${project}:${value}`].kill('SIGINT'); // 温和停止
@@ -143,7 +143,7 @@ app.post('/project/stopCommand', (req, res) => {
   }
 });
 
-app.post('/project/getRunningList', (req, res) => {
+app.post('/api/project/getRunningList', (req, res) => {
   const result = {};
   Object.keys(currentChild).map(_ => {
     let names = _.split(":");
@@ -155,7 +155,7 @@ app.post('/project/getRunningList', (req, res) => {
   res.send({ success: true, data: result, code: 0, msg: '' })
 })
 
-app.post('/project/addProjectFolder', async (req, res) => {
+app.post('/api/project/addProjectFolder', async (req, res) => {
   let config = getConfig();
   if (!config) {
     config = {}
@@ -176,7 +176,7 @@ app.post('/project/addProjectFolder', async (req, res) => {
   }
 })
 
-app.post('/project/openInVscode', (req, res) => {
+app.post('/api/project/openInVscode', (req, res) => {
   const { path } = req.body;
   const isWin = process.platform === 'win32';
   const cmd = isWin ? 'cmd' : 'sh';

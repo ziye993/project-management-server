@@ -7,7 +7,7 @@ const io = new Server(server);
 let users = {}; // { socketId: { ip, name } }
 let chats = {}; // { 'ipA-ipB': [ {from, to, msg, time} ] }
 
-io.on('connection', (socket) => {
+io.on('/api/connection', (socket) => {
   const ip = socket.handshake.address;
   users[socket.id] = { ip };
 

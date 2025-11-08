@@ -1,7 +1,7 @@
 import { exec } from "child_process";
 let cmd;
 const openUrl = (port) => {
-  const url = `http://localhost:${port}/index.html`;
+  const url = `http://localhost:${port}/project/home`;
   switch (process.platform) {
     case "win32":
       cmd = `start "" "${url}"`;
