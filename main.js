@@ -24,6 +24,6 @@ app.get(/.*/, (req, res) => {
 
 // 启动服务器
 server.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on http://localhost:${port}`);
-  openUrl(`http://localhost:${port}`);  // 打开浏览器访问当前端口
+  console.log("ok\n")
+  openUrl(port);  // 打开浏览器访问当前端口
 });
