@@ -136,17 +136,15 @@ app.post('/api/project/runCommand', (req, res) => {
 });
 
 app.post('/api/project/stopCommand', async (req, res) => {
-  const { path, command, value, project } = req.body;
-  if (currentChild?.[`${project}:${value}`]) {
-    let killRes = await killChild(currentChild?.[`${project}:${value}`], 'SIGINT');
-    killRes = await killChild(currentChild?.[`${project}:${value}`], 'SIGINT');
-    logs[project][value] = undefined;
-    if (killRes) {
-      currentChild[`${project}:${value}`] = undefined;
-      res.send({ msg: '已停止进程', code: 0, success: true, data: null });
-    } else {
-      res.send({ msg: '停止失败', code: 1, success: false, data: `${project}:${value}` });
+    const { path, command, value, project } = req.body;
+  if (currentChild?.[ `${project}:${value}` ]) {
+    let killRes = await killChild(currentChild?.[ `${project}:${value}` ], 'SIGINT');
+    if (!killRes) {
+      killRes = await killChild(currentChild?.[ `${project}:${value}` ], 'SIGINT');
     }
+    logs[ project ][ value ] = undefined;
+    currentChild[ `${project}:${value}` ] = undefined;
+    res.send({ msg: '', code: 0, success: killRes, data: killRes });
   } else {
     res.send({ msg: '此项目可能未运行或出错', code: 2, success: false, data: `${project}:${value}` });
   }
