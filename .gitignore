@@ -20,7 +20,7 @@ package-lock.json
 *bak
 .vscode
 /node_modules*
-/data/*
+/data*
 # visual studio code
 .history
 functions/*
@@ -32,4 +32,3 @@ screenshot
 .eslintcache
 
 build
-/data*
