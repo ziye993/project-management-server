@@ -7,16 +7,14 @@ import kill from 'tree-kill';
  * @param {string} signal 信号类型（默认 SIGINT）
  * @returns {Promise<boolean>} 是否成功杀掉
  */
-export function killChild(child, signal = 'SIGINT') {
+export async function killChild(child, signal = 'SIGINT') {
     return new Promise((resolve) => {
         if (!child || !child.pid) return resolve(false);
-
         // 判断平台
         const isWin = platform() === 'win32';
-
         if (isWin) {
             // Windows 用 tree-kill
-            kill(child.pid, signal, (err) => {
+            kill(child.pid, signal, async (err) => {
                 resolve(!err);
             });
         } else {
