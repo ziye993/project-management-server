@@ -1,10 +1,20 @@
 
-import { fileExists, getConfig, getFolders, readJSON, setConfig, writeJSON } from './jsonFile.js'
+import {config as _config, fileExists, getConfig, getFolders, readJSON, setConfig} from './jsonFile.js'
 
-export default function initConfig(forceRefresh) {
-  const config = getConfig();
+export let config = _config ;
+
+export const refreshConfig = ()=>{
+  config = getConfig(true);
+}
+
+/**
+ * 初始化congif,返回 项目文件列表
+ * @param forceRefresh
+ * @returns {*[]}
+ */
+export default function getProjectList(forceRefresh) {
+  const config = getConfig(forceRefresh);
   if (!forceRefresh) {
-
     return config.projectList || []
   }
   const data = []

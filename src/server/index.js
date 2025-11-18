@@ -1,2 +1,5 @@
 import './pm/index.js'
 import './localhostChat/index.js'
+import './file/index.js'
+import './upload/index.js'
+import './config/index.js'

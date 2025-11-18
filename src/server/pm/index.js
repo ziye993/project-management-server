@@ -1,11 +1,11 @@
-import initConfig from '../../utils/initConfig.js';
+import getProjectList from '../../utils/initConfig.js';
 import app from '../../app.js';
 import { spawn, exec } from 'child_process';
 import { getConfig, setConfig } from '../../utils/jsonFile.js'
 import pkg from 'node-file-dialog';
 import { killChild } from '../../utils/killChild.js'
 
-let projectList = initConfig();
+let projectList = getProjectList();
 let currentChild = {}; // 保存当前子进程
 
 let logs = {
@@ -54,7 +54,7 @@ app.post('/api/project/getLogs', (req, res) => {
 })
 
 app.post('/api/project/forceRefreshList', (req, res) => {
-  projectList = initConfig(true);
+  projectList = getProjectList(true);
   res.json({
     msg: '', data: projectList, success: true, code: 0
   });
@@ -163,7 +163,7 @@ app.post('/api/project/getRunningList', (req, res) => {
 })
 
 app.post('/api/project/addProjectFolder', async (req, res) => {
-  let config = getConfig();
+  let config = getConfig(true);
   if (!config) {
     config = {}
   }
