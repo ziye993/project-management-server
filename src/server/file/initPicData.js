@@ -9,6 +9,9 @@ import fs from "fs";
 import path from "path";
 import {config} from "../../utils/jsonFile.js";
 
+const generateTmp = async(filePath)=>{
+}
+
 const initPicData = async (dirPath) => {
   const isTmp = await checkAndCreateTmpFolder(dirPath, true);
   if (!isTmp) {
@@ -32,9 +35,8 @@ const initPicData = async (dirPath) => {
         const fileName = _fileName.join("");
         const fileNames = fileName.split(".")
         const fileType = fileNames[fileNames.length - 1];
-        console.log(hasTmpFile(filePath), 'console.log(hasTmpFile(filePath))')
         if (!hasTmpFile(filePath)) {
-          uploadTmpApp.push(async () => await createThumbnail(dirPath))
+          uploadTmpApp.push(async () => await createThumbnail(filePath))
         }
         return {
           path: filePath,
@@ -56,7 +58,6 @@ const initPicData = async (dirPath) => {
 (async () => {
   try {
     const data = await initPicData(config.picUploadPath, true);
-    console.log("tmp info", data);
   } catch (e) {
     console.log('error', error)
   }

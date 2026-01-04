@@ -9,7 +9,6 @@ app.post('/api/config/setPicUploadPath', (req, res) => {
   }
   const config = getConfig(true) || {};
   config.picUploadPath = uploadPath;
-  console.log('config', config);
   setConfig(config);
   res.send({code:0,success:true,data:null,msg:''})
 })

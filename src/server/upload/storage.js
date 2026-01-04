@@ -1,6 +1,4 @@
-import path from 'path';
 import multer from 'multer';
-import {config} from "../../utils/initConfig.js";
 
 export const init = () => {
   const storage = multer.diskStorage({// 设置存储引擎

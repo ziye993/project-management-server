@@ -1,5 +1,7 @@
+import './porxyStatic/index.js'
 import './pm/index.js'
 import './localhostChat/index.js'
 import './file/index.js'
 import './upload/index.js'
 import './config/index.js'
+import './user/index.js'

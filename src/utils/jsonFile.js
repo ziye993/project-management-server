@@ -6,7 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const configPath = '../../data/config.json';
+
 export let config =null;
+
 config = getConfig(configPath);
 
 // 读取 JSON 文件

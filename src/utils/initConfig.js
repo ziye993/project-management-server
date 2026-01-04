@@ -8,7 +8,7 @@ export const refreshConfig = ()=>{
 }
 
 /**
- * 初始化congif,返回 项目文件列表
+ * 初始化congig,返回 项目文件列表
  * @param forceRefresh
  * @returns {*[]}
  */

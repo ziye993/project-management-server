@@ -1,23 +1,21 @@
 import getProjectList from '../../utils/initConfig.js';
 import app from '../../app.js';
-import { spawn, exec } from 'child_process';
-import { getConfig, setConfig } from '../../utils/jsonFile.js'
+import {spawn} from 'child_process';
+import {getConfig, setConfig} from '../../utils/jsonFile.js'
 import pkg from 'node-file-dialog';
-import { killChild } from '../../utils/killChild.js'
+import {killChild} from '../../utils/killChild.js'
 
 let projectList = getProjectList();
 let currentChild = {}; // 保存当前子进程
 
-let logs = {
-
-}
+let logs = {}
 const cleanup = () => {
   if (!currentChild) {
     return
   }
 
   console.log("\n🧹 服务即将退出，清理子进程...");
-  let lengtht = Object.keys(currentChild)?.filter(_ => !!currentChild[_])?.length;
+  let length = Object.keys(currentChild)?.filter(_ => !!currentChild[_])?.length;
   let successCount = 0;
   Object.keys(currentChild)?.map(_ => {
     try {
@@ -29,7 +27,7 @@ const cleanup = () => {
 
   })
   currentChild = undefined;
-  console.log(`\n🧹清理完成; 总计${lengtht} ; 成功${successCount}`);
+  console.log(`\n🧹清理完成; 总计${length} ; 成功${successCount}`);
   process.exit();
 };
 
@@ -50,7 +48,7 @@ app.post('/api/project/getProjectList', (req, res) => {
 });
 
 app.post('/api/project/getLogs', (req, res) => {
-  res.send({ success: true, data: logs, code: 0, msg: '' })
+  res.send({success: true, data: logs, code: 0, msg: ''})
 })
 
 app.post('/api/project/forceRefreshList', (req, res) => {
@@ -61,9 +59,9 @@ app.post('/api/project/forceRefreshList', (req, res) => {
 });
 
 app.post('/api/project/runCommand', (req, res) => {
-  const { path, command, value, project } = req.body;
+  const {path, command, value, project} = req.body;
   if (!command || !path) return res.status(400).send('缺少参数');
-  let child = null
+  let child;
   if (!currentChild[`${project}:${value}`]) {
     const isWin = process.platform === 'win32';
     const cmd = isWin ? 'cmd' : 'sh';
@@ -77,7 +75,7 @@ app.post('/api/project/runCommand', (req, res) => {
     child.stderr.removeAllListeners('data');
   }
   if (!logs[project]) logs[project] = {};
-  if (!logs[project][value]) logs[project][value] = { logs: [] };
+  if (!logs[project][value]) logs[project][value] = {logs: []};
   if (!child) {
 
     return
@@ -86,7 +84,7 @@ app.post('/api/project/runCommand', (req, res) => {
   child.stdout.on('data', data => {
     const buf = Buffer.from(data);
     const str = buf.toString(); // 默认 utf8
-    logs[project][value].logs.push({ text: str });
+    logs[project][value].logs.push({text: str});
     if (logs[project][value].logs.length > 100) {
       logs[project][value].logs.shift(); // 保留最近 1000 行
     }
@@ -97,17 +95,16 @@ app.post('/api/project/runCommand', (req, res) => {
   child.stderr.on("data", data => {
     const buf = Buffer.from(data);
     const str = buf.toString(); // 默认 utf8
-    logs[project][value].logs.push({ text: str, type: 'error' });
+    logs[project][value].logs.push({text: str, type: 'error'});
     if (logs[project][value].logs.length > 100) {
       logs[project][value].logs.shift(); // 保留最近 1000 行
     }
     res.write(`[[E]][错误] ${data}`);
-    console.log(`${project}:${value}: error`)
   });
 
   // 进程出错（启动失败）
   child.on("error", err => {
-    logs[project][value].logs.push({ text: err.message, type: 'error' });
+    logs[project][value].logs.push({text: err.message, type: 'error'});
     if (logs[project][value].logs.length > 100) {
       logs[project][value].logs.shift(); // 保留最近 1000 行
     }
@@ -131,22 +128,21 @@ app.post('/api/project/runCommand', (req, res) => {
 
   // req.on('close', () => {
   //   if (!res.writableEnded) res.end();
-  //   console.log(`${project}:${value}: web close`)
   // });
 });
 
 app.post('/api/project/stopCommand', async (req, res) => {
-    const { path, command, value, project } = req.body;
-  if (currentChild?.[ `${project}:${value}` ]) {
-    let killRes = await killChild(currentChild?.[ `${project}:${value}` ], 'SIGINT');
+  const {path, command, value, project} = req.body;
+  if (currentChild?.[`${project}:${value}`]) {
+    let killRes = await killChild(currentChild?.[`${project}:${value}`], 'SIGINT');
     if (!killRes) {
-      killRes = await killChild(currentChild?.[ `${project}:${value}` ], 'SIGINT');
+      killRes = await killChild(currentChild?.[`${project}:${value}`], 'SIGINT');
     }
-    logs[ project ][ value ] = undefined;
-    currentChild[ `${project}:${value}` ] = undefined;
-    res.send({ msg: '', code: 0, success: killRes, data: killRes });
+    logs[project][value] = undefined;
+    currentChild[`${project}:${value}`] = undefined;
+    res.send({msg: '', code: 0, success: killRes, data: killRes});
   } else {
-    res.send({ msg: '此项目可能未运行或出错', code: 2, success: false, data: `${project}:${value}` });
+    res.send({msg: '此项目可能未运行或出错', code: 2, success: false, data: `${project}:${value}`});
   }
 });
 
@@ -159,7 +155,7 @@ app.post('/api/project/getRunningList', (req, res) => {
     }
     result[names[0]].push(names[1]);
   });
-  res.send({ success: true, data: result, code: 0, msg: '' })
+  res.send({success: true, data: result, code: 0, msg: ''})
 })
 
 app.post('/api/project/addProjectFolder', async (req, res) => {
@@ -173,18 +169,18 @@ app.post('/api/project/addProjectFolder', async (req, res) => {
   if (!config.projectList) {
     config.projectList = [];
   }
-  const _path = await pkg({ type: "directory" });
+  const _path = await pkg({type: "directory"});
   if (_path) {
     config.projectPaths.push(..._path);
     setConfig(config);
-    res.send({ success: true, data: _path, code: 0, msg: '' });
+    res.send({success: true, data: _path, code: 0, msg: ''});
   } else {
-    res.status(500).send({ success: false, data: null, code: 1, msg: '执行错误' });
+    res.status(500).send({success: false, data: null, code: 1, msg: '执行错误'});
   }
 })
 
 app.post('/api/project/openInVscode', (req, res) => {
-  const { path } = req.body;
+  const {path} = req.body;
   const isWin = process.platform === 'win32';
   const cmd = isWin ? 'cmd' : 'sh';
   const args = isWin ? ['/c', `code ${path}`] : ['-c', `code ${path}`];
@@ -199,4 +195,3 @@ app.post('/api/project/openInVscode', (req, res) => {
     })
   }
 })
-

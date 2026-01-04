@@ -18,11 +18,9 @@ const pathCache = cache.get(PATH_CACHE_KEY);
  */
 export function checkAndCreateTmpFolder(folderPath, create = false) {
   const tmpFolderPath = path.join(folderPath, '.tmp');
-  console.log(tmpFolderPath)
   return new Promise((resolve, reject) => {
     fs.access(tmpFolderPath, fs.constants.F_OK, (err) => {
       if (err && create) {
-
         fs.mkdir(tmpFolderPath, {recursive: true}, (err) => {
           if (err) {
             reject(false)
@@ -75,10 +73,9 @@ function setCacheForPath(inputPath, data) {
  * @param inputPath
  * @returns {Promise<unknown>}
  */
-function readDirectory(inputPath) {
+export function readDirectory(inputPath) {
   return new Promise((resolve, reject) => {
     fs.readdir(inputPath, {withFileTypes: true}, (err, files) => {
-
       if (err) {
         reject(err);
         return;
@@ -89,6 +86,7 @@ function readDirectory(inputPath) {
         isDirectory: _.isDirectory(),
         path: `${_.parentPath}/${_.name}`
       }));
+      console.log(dirs)
       resolve(dirs);
     });
   });
@@ -176,8 +174,9 @@ export function createThumbnail(filePath, _outputDir = null, targetSizeKB = 50) 
     const dir = path.dirname(filePath);  // 获取文件夹路径
     outputDir = path.join(dir, '.tmp');  // 返回目标路径
   }
+
   return new Promise((resolve, reject) => {
-    const fileStats = fs.statSync(filePath);
+    const fileStats =  fs.statSync(filePath);
     const fileSizeKB = fileStats.size / 1024; // 获取文件大小 (KB)
 
     // 如果文件大于200KB
@@ -195,27 +194,31 @@ export function createThumbnail(filePath, _outputDir = null, targetSizeKB = 50) 
         .output(outputFilePath)
         .outputOptions([
           `-q:v ${quality}`, // 设置压缩质量
-          '-vf scale=640:360' // 你可以调整尺寸，保证图片小巧
+          "-vf scale='100:-2'" // 你可以调整尺寸，保证图片小巧
         ])
         .on('end', () => {
           const outputFileStats = fs.statSync(outputFilePath);
           const outputSizeKB = outputFileStats.size / 1024;
 
-          if (outputSizeKB >= 20 && outputSizeKB <= targetSizeKB) {
+          if ( outputSizeKB <= targetSizeKB) {
             resolve(outputFilePath);
           } else if (outputSizeKB > targetSizeKB) {
             // 如果生成的图片大于目标大小，继续降低质量
             quality += 5;
-            if (quality <= 90) { // 降低质量的最大值
-              generateThumbnail();
-            } else {
-              reject('Unable to generate an image within the desired size range.');
+            if (outputSizeKB > targetSizeKB) {
+              quality += 1; // q:v 数字越大压缩越高
+              if (quality <= 31) {
+                generateThumbnail();
+              } else {
+                reject('Cannot reach target size.');
+              }
             }
           } else {
             reject('Generated image is too small.');
           }
         })
         .on('error', (err) => {
+          console.error(err);
           reject(`Error generating thumbnail: ${err.message}`);
         })
         .run();

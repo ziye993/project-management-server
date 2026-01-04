@@ -2,7 +2,7 @@ import app from '../../app.js';
 import cache from '../../cache.js';
 import {
   convertToSystemPath,
-  getDirectoryContents
+  getDirectoryContents, readDirectory
 } from "../../utils/file.js";
 import {cachePicListKey, DEFAULT_PATH} from "../../const.js";
 import {init} from "../upload/storage.js";
@@ -30,9 +30,26 @@ app.post('/api/file/fileList', async (req, res) => {
  * 获取图片的list
  */
 app.post("/api/file/getPicList", async (req, res) => {
-  const data = cache.get(cachePicListKey);
-  return {code: 0, success: true, data, msg: ''}
-})
+  cache.flushAll();
+  let data = cache.get(cachePicListKey);
+    if (!data) {
+      data =( await readDirectory(config?.picUploadPath)).filter(_=>!_.isDirectory);
+
+      cache.set(cachePicListKey, data)
+    }
+    console.log(cache.get(cachePicListKey), ' cache.get(cachePicListKey)')
+    data = data.map(_ => ({
+      url: `${config?.picRequestPath}/${_.name}`,
+      size: _?.size,
+      fileType: _?.fileType,
+      name: _?.name,
+      prefixName: _?.prefixName,
+      unit: _.unit,
+      tmpPath: `${config?.picRequestPath}/.tmp/${_.name}`
+    }))
+    return res.send({code: 0, success: true, data, msg: ''})
+  }
+)
 
 app.post("/api/file/refreshPicList", async (req, res) => {
   if (isRefresh) {
